@@ -29,7 +29,7 @@ async def duckduckgo(client, message):
     if not query:
         await pablo.edit(engine.get_string("INPUT_REQ").format("query"))
         return
-    sample_url = "https://duckduckgo.com/?q={}".format(query.replace(" ", "+"))
+    sample_url = f'https://duckduckgo.com/?q={query.replace(" ", "+")}'
     link = sample_url.rstrip()
     await pablo.edit(
         engine.get_string("DUCK_DUCK_GO").format(query, link)
@@ -50,9 +50,7 @@ async def grs(client, message):
     query = urllib.parse.quote_plus(query)
     number_result = 8
     ua = UserAgent()
-    google_url = (
-        "https://www.google.com/search?q=" + query + "&num=" + str(number_result)
-    )
+    google_url = f"https://www.google.com/search?q={query}&num={number_result}"
     response = requests.get(google_url, {"User-Agent": ua.random})
     soup = BeautifulSoup(response.text, "html.parser")
     result_div = soup.find_all("div", attrs={"class": "ZINbbc"})
@@ -78,7 +76,7 @@ async def grs(client, message):
         if clean is None:
             to_remove.append(i)
             continue
-        clean_links.append(clean.group(1))
+        clean_links.append(clean[1])
     for x in to_remove:
         del titles[x]
         del descriptions[x]

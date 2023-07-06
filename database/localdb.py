@@ -22,7 +22,4 @@ async def set_lang(lang):
 
 async def check_lang():
     midhun = await ulang.find_one({"_id": "UB_LANG"})
-    if midhun:
-        return midhun['lang']
-    else:
-        return 'en'
+    return midhun['lang'] if midhun else 'en'

@@ -172,9 +172,9 @@ async def bleck_pic(client, message):
     ):
         await owo.edit(engine.get_string("NEEDS_REPLY").format("Video / Pic"))
         return
-    is_video = False
-    if message.reply_to_message.video or message.reply_to_message.animation:
-        is_video = True
+    is_video = bool(
+        message.reply_to_message.video or message.reply_to_message.animation
+    )
     ppics = await message.reply_to_message.download()
     try:
         if is_video:

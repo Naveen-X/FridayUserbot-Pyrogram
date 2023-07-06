@@ -43,7 +43,7 @@ async def get_str(client, message):
     )
 
     file_name = (message.reply_to_message.video.file_name).split(".")[0]
-    srt_file_name = str(file_name) + ".srt"
+    srt_file_name = f"{str(file_name)}.srt"
     cmd_to_un = f"ffmpeg -i {file_} {srt_file_name}"
     await run_cmd(cmd_to_un)
     if not os.path.exists(srt_file_name):
@@ -109,7 +109,7 @@ async def hell_speed_s(client, message):
             message.chat.id,
             file_name,
             progress=progress,
-            progress_args=(msg_, c_time, f"`Uploading Fast Forwarded Video`"),
+            progress_args=(msg_, c_time, "`Uploading Fast Forwarded Video`"),
         )
     await msg_.delete()
     for files in (file_, file_name):
@@ -159,7 +159,7 @@ async def fking_slow(client, message):
             message.chat.id,
             file_name,
             progress=progress,
-            progress_args=(msg_, c_time, f"`Uploading Slow Video`"),
+            progress_args=(msg_, c_time, "`Uploading Slow Video`"),
         )
     await msg_.delete()
     for files in (file_, file_name):
@@ -208,7 +208,7 @@ async def v_note(client, message):
             message.chat.id,
             file_name,
             progress=progress,
-            progress_args=(msg_, c_time, f"`Uploading Video Note`"),
+            progress_args=(msg_, c_time, "`Uploading Video Note`"),
         )
     await msg_.delete()
     for files in (file_, file_name):

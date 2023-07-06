@@ -53,7 +53,7 @@ async def load_unofficial_modules():
         try:
             load_xtra_mod(mods)
         except Exception as e:
-            logging.error("[USER][XTRA-PLUGINS] - Failed To Load : " + f'{mods} - {e}')
+            logging.error(f'[USER][XTRA-PLUGINS] - Failed To Load : {mods} - {e}')
 
 
 async def fetch_plugins_from_channel():
@@ -86,7 +86,7 @@ async def run_bot():
             try:
                 load_plugin(mods, assistant=True)
             except Exception as e:
-                logging.error("[ASSISTANT] - Failed To Load : " + f"{mods} - {str(e)}")
+                logging.error(f"[ASSISTANT] - Failed To Load : {mods} - {str(e)}")
     await Friday.start()
     Friday.me = await Friday.get_me()
     Friday.selected_lang = await check_lang()
@@ -96,7 +96,7 @@ async def run_bot():
     if Friday2:
         await Friday2.start()
         Friday2.me = await Friday2.get_me()
-        Friday2.has_a_bot = True if bot else False
+        Friday2.has_a_bot = bool(bot)
     if Friday3:
         await Friday3.start()
         Friday3.me = await Friday3.get_me()
@@ -112,7 +112,7 @@ async def run_bot():
         try:
             load_plugin(nm)
         except Exception as e:
-            logging.error("[USER] - Failed To Load : " + f'{nm} - {e}')
+            logging.error(f'[USER] - Failed To Load : {nm} - {e}')
     if Config.LOAD_UNOFFICIAL_PLUGINS:
         await load_unofficial_modules()
     full_info = f"""Friday Based On Pyrogram V{__version__}

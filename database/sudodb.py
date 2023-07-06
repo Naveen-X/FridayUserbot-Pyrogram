@@ -35,7 +35,4 @@ async def is_user_sudo(user_id):
 
 async def sudo_list():
     sm = await db_y.find_one({"_id": "SUDO_ID"})
-    if sm:
-        return [int(i) for i in sm.get("user_id")]
-    else:
-        return []
+    return [int(i) for i in sm.get("user_id")] if sm else []

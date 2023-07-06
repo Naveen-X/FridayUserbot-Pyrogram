@@ -35,7 +35,4 @@ async def is_user_approved(user_id):
 
 async def user_list():
     sm = await db_y.find_one({"_id": "PmPermit"})
-    if sm:
-        return list(sm.get("user_id"))
-    else:
-        return False
+    return list(sm.get("user_id")) if sm else False

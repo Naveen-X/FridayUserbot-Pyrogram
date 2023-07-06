@@ -19,10 +19,7 @@ from main_startup.__main__ import Friday, bot
 
 async def my_id_(f, client, message):
     me = Friday.me.id
-    if message.from_user.id == me:
-        return bool(True)
-    else:
-        return bool(False)
+    return message.from_user.id == me
 
 
 owner_f = filters.create(func=my_id_, name="owner_f")

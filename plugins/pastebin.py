@@ -97,7 +97,7 @@ async def pasty(client, message):
     pablo = await edit_or_reply(message, "`Pasting to Pasty.....`")
     tex_t = get_text(message)
     message_s = tex_t
-    if not tex_t:
+    if not message_s:
         if not message.reply_to_message:
             await pablo.edit("`Reply To File / Give Me Text To Paste!`")
             return
@@ -127,7 +127,7 @@ async def space_bin(client, message):
     pablo = await edit_or_reply(message, "`Pasting to Spacebin.....`")
     tex_t = get_text(message)
     message_s = tex_t
-    if not tex_t:
+    if not message_s:
         if not message.reply_to_message:
             await pablo.edit("`Reply To File / Give Me Text To Paste!`")
             return
@@ -156,7 +156,7 @@ async def cat_bin(client, message):
     pablo = await edit_or_reply(message, "`Pasting to Catbin.....`")
     tex_t = get_text(message)
     message_s = tex_t
-    if not tex_t:
+    if not message_s:
         if not message.reply_to_message:
             await pablo.edit("`Reply To File / Give Me Text To Paste!`")
             return
@@ -185,7 +185,7 @@ async def haste_bin(client, message):
     pablo = await edit_or_reply(message, "`Pasting to Hastebin.....`")
     tex_t = get_text(message)
     message_s = tex_t
-    if not tex_t:
+    if not message_s:
         if not message.reply_to_message:
             await pablo.edit("`Reply To File / Give Me Text To Paste!`")
             return

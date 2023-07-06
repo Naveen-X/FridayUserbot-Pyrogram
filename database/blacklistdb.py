@@ -20,24 +20,21 @@ async def del_blacklist(trigger, chat_id):
 
 
 async def get_chat_blacklist(chat_id):
-    r = [u async for u in blacklist.find({"chat_id": chat_id})]
-    if r:
+    if r := [u async for u in blacklist.find({"chat_id": chat_id})]:
         return r
     else:
         return False
 
 
 async def num_blacklist():
-    lol = [l async for l in blacklist.find({})]
-    if lol:
+    if lol := [l async for l in blacklist.find({})]:
         return len(lol)
     else:
         False
 
 
 async def num_blacklist_triggers_chat(chat_id):
-    r = [m async for m in blacklist.find({"chat_id": chat_id})]
-    if r:
+    if r := [m async for m in blacklist.find({"chat_id": chat_id})]:
         return len(r)
     else:
         return False

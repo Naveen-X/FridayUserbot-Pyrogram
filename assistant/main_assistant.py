@@ -107,7 +107,7 @@ async def user_s(client, message):
     users_list = "List Of Total Users In Bot. \n\n"
     total_users = await get_all_users()
     for starked in total_users:
-        users_list += ("==> {} \n").format(int(starked.get("user_id")))
+        users_list += f'==> {int(starked.get("user_id"))} \n'
     with open("users.txt", "w") as f:
         f.write(users_list)
     await message.reply_document("users.txt", caption="Users In Your dB")

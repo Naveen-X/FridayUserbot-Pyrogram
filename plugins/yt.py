@@ -142,7 +142,7 @@ async def yt_vid(client, message):
             progress_args=(
                 pablo,
                 c_time,
-                f"`Uploading Downloaded Youtube File.`",
+                "`Uploading Downloaded Youtube File.`",
                 str(yt_file),
             ),
         )

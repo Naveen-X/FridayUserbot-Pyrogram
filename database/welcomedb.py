@@ -25,7 +25,4 @@ async def del_welcome(chat_id):
 
 async def welcome_info(chat_id):
     r = await welcome.find_one({"chat_id": chat_id})
-    if r:
-        return r
-    else:
-        return False
+    return r if r else False
