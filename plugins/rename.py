@@ -41,7 +41,7 @@ async def rename(client, message):
             Kk[1]
         except:
             fuck = file_name.rpartition(".")[-1]
-            fname = fname + "." + fuck
+            fname = f"{fname}.{fuck}"
     EsCoBaR = await message.reply_to_message.download(fname)
     caption = message.reply_to_message.caption or ""
     c_time = time.time()

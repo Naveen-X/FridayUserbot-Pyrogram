@@ -27,7 +27,4 @@ async def no_afk():
 
 async def check_afk():
     midhun = await afk.find_one({"_id": "AFK"})
-    if midhun:
-        return midhun
-    else:
-        return None
+    return midhun if midhun else None

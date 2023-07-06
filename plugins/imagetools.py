@@ -621,7 +621,7 @@ async def spin(client, message):
         im = im.convert("RGB")
     for k, nums in enumerate(range(1, 360, step), start=0):
         y = im.rotate(nums * spin_dir)
-        y.save(os.path.join(path, "spinx%s.jpg" % k))
+        y.save(os.path.join(path, f"spinx{k}.jpg"))
     output_vid = os.path.join(path, "out.mp4")
     # ;__; Maths lol, y = mx + c
     frate = int(((90 / 59) * step) + (1680 / 59))

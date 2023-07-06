@@ -34,15 +34,11 @@ async def del_notes(chat_id):
 
 async def note_info(keyword, chat_id):
     r = await notes.find_one({"keyword": keyword, "chat_id": chat_id})
-    if r:
-        return r
-    else:
-        return False
+    return r if r else False
 
 
 async def all_note(chat_id):
-    r = [u async for u in notes.find({"chat_id": chat_id})]
-    if r:
+    if r := [u async for u in notes.find({"chat_id": chat_id})]:
         return r
     else:
         return False

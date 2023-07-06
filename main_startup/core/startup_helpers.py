@@ -28,10 +28,10 @@ BRANCH_ = Config.U_BRANCH
 def load_xtra_mod(plugin_name):
     """Load All Extra Plugins Using ImportLib"""
     if plugin_name not in Config.XTRA_NO_LOAD:
-        plugin_path = "xtraplugins." + plugin_name
+        plugin_path = f"xtraplugins.{plugin_name}"
         loader_type = "[USER][XTRA-PLUGINS]"
         importlib.import_module(plugin_path)
-        logging.info(f"{loader_type} - Loaded : " + str(plugin_name))
+        logging.info(f"{loader_type} - Loaded : {str(plugin_name)}")
 
 
 def load_plugin(plugin_name, assistant=False):
@@ -41,19 +41,19 @@ def load_plugin(plugin_name, assistant=False):
         and plugin_name not in Config.MAIN_NO_LOAD
     ):
         if assistant:
-            plugin_path = "assistant." + plugin_name
+            plugin_path = f"assistant.{plugin_name}"
         else:
-            plugin_path = "plugins." + plugin_name
+            plugin_path = f"plugins.{plugin_name}"
         loader_type = "[Assistant]" if assistant else "[User]"
         importlib.import_module(plugin_path)
-        logging.info(f"{loader_type} - Loaded : " + str(plugin_name))
+        logging.info(f"{loader_type} - Loaded : {str(plugin_name)}")
 
 
 def plugin_collecter(path):
     """Collects All Files In A Path And Give Its Name"""
     if path.startswith("/"):
         path = path[1:]
-    pathe = path + "*.py" if path.endswith("/") else path + "/*.py"
+    pathe = f"{path}*.py" if path.endswith("/") else f"{path}/*.py"
     Poppy = glob.glob(pathe)
     final = []
     Pop = Poppy

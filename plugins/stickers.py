@@ -148,7 +148,7 @@ async def packinfo(client, message):
         messi = (await client.get_history("stickers", 1))[0]
         while limit in messi.text:
             pack += 1
-            prev_pack = int(pack) - 1
+            prev_pack = pack - 1
             await pablo.edit(engine.get_string("KANG_FULL").format(prev_pack, pack))
             packname = f"@{nm} Kang Pack {pack}"
             packshortname = f"FRIDAY_{message.from_user.id}_{pack}"

@@ -570,8 +570,8 @@ async def purge(client, message):
     message_ids = []
     purge_len = 0
     event = await edit_or_reply(message, engine.get_string("PROCESSING"))
-    me_m = client.me
     if message.chat.type in ["supergroup", "channel"]:
+        me_m = client.me
         me_ = await message.chat.get_member(int(me_m.id))
         if not me_.can_delete_messages:
             await event.edit(engine.get_string("NOT_ADMIN"))

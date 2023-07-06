@@ -68,7 +68,7 @@ async def lgo(client, message):
         .replace("[5]", "[6]")
     )
     open("json.json", "w").write(jsn)
-    await runcmd(f"lottie_convert.py json.json tgs.tgs")
+    await runcmd("lottie_convert.py json.json tgs.tgs")
     await client.send_sticker(message.chat.id, "tgs.tgs")
     os.remove("json.json")
     os.remove(lol)
@@ -113,9 +113,7 @@ def get_img_search_result(imoge: str):
     response = requests.post(searchUrl, files=multipart, allow_redirects=False)
     if os.path.exists(name):
         os.remove(name)
-    if response.status_code == 400:
-        return None
-    return response.headers["Location"]
+    return None if response.status_code == 400 else response.headers["Location"]
 
 @friday_on_cmd(
     ["reverse"],
@@ -135,7 +133,7 @@ async def reverseing(client, message):
     fetchUrl = await get_img_search_result(imoge)
     if not fetchUrl:
         return await pablo.edit(engine.get_string("IMG_NOT_FOUND").format("google"))
-    match = await ParseSauce(fetchUrl + "&preferences?hl=en&fg=1#languages")
+    match = await ParseSauce(f"{fetchUrl}&preferences?hl=en&fg=1#languages")
     guess = match["best_guess"]
     imgspage = match["similar_images"]
     if guess and imgspage:
@@ -197,7 +195,7 @@ async def yandex_(client, message):
     except:
         await pablo.edit(engine.get_string("IMG_NOT_FOUND").format("yandex"))
         return
-    img_search_url = searchUrl + "?" + query_string
+    img_search_url = f"{searchUrl}?{query_string}"
     caption = engine.get_string("YANDEX").format(img_search_url)
     await pablo.edit(caption, parse_mode="HTML", disable_web_page_preview=True)
     os.remove(imoge)

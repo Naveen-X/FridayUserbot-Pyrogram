@@ -416,7 +416,7 @@ async def cmd_buutton(client, cb):
         ],
         [
             InlineKeyboardButton(
-                text="Back 🔙", callback_data=f"backO_to_help_menu"
+                text="Back 🔙", callback_data="backO_to_help_menu"
             )
         ],
     ]
@@ -573,13 +573,12 @@ async def fuck_arch_btw(client, cb):
 @bot.on_callback_query(filters.regex(pattern="make_basic_button_(True|False)"))
 @cb_wrapper
 async def wow_nice(client, cb):
-    nice = cb.matches[0].group(1) != "False"
-    if not nice:
-        v_t = XTRA_CMD_LIST
-        bttn = paginate_help(0, XTRA_CMD_LIST, "helpme", is_official=nice)
-    else:
+    if nice := cb.matches[0].group(1) != "False":
         v_t = CMD_LIST
         bttn = paginate_help(0, CMD_LIST, "helpme", is_official=nice)
+    else:
+        v_t = XTRA_CMD_LIST
+        bttn = paginate_help(0, XTRA_CMD_LIST, "helpme", is_official=nice)
     await cb.edit_message_text(
         f"Command List & Help \n**Total Commands :** `{len(v_t)}` \n**(C) @FRIDAYOT**",
         reply_markup=InlineKeyboardMarkup(bttn),

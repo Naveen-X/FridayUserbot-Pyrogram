@@ -41,10 +41,9 @@ async def gps(client, message):
         logging.info(e)
         await pablo.edit(engine.get_string("GPS_2"))
         return
-    gm = "https://www.google.com/maps/search/{},{}".format(latitude, longitude)
+    gm = f"https://www.google.com/maps/search/{latitude},{longitude}"
     await client.send_location(message.chat.id, float(latitude), float(longitude))
     await pablo.reply(
-        "Open with: [Google Maps]({})".format(gm),
-        disable_web_page_preview=False,
+        f"Open with: [Google Maps]({gm})", disable_web_page_preview=False
     )
     await pablo.delete()

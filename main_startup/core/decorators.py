@@ -46,14 +46,12 @@ sudo_list_ = Friday.loop.create_task(sudo_list())
 
 async def _sudo(f, client, message):
     if not message:
-        return bool(False)
+        return False
     if not message.from_user:
-        return bool(False)
+        return False
     if not message.from_user.id:
-        return bool(False)
-    if message.from_user.id in sudo_list_.result():
-        return bool(True)
-    return bool(False)
+        return False
+    return message.from_user.id in sudo_list_.result()
 
 _sudo = filters.create(func=_sudo, name="_sudo")
 
@@ -231,12 +229,11 @@ def add_help_menu(
             
 
 def add_handler(filter_s, func_, cmd):
-    d_c_l = Config.DISABLED_SUDO_CMD_S
-    if d_c_l:
+    if d_c_l := Config.DISABLED_SUDO_CMD_S:
         d_c_l = d_c_l.split(" ")
         d_c_l = list(d_c_l)
         if "dev" in d_c_l:
-            d_c_l.extend(['eval', 'bash', 'install']) 
+            d_c_l.extend(['eval', 'bash', 'install'])
         if any(item in list(d_c_l) for item in list(cmd)): 
             filter_s = (filters.me & filters.command(cmd, Config.COMMAND_HANDLER) & ~filters.via_bot & ~filters.forwarded)
     Friday.add_handler(MessageHandler(func_, filters=filter_s), group=0)
